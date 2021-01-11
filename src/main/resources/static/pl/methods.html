@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="Szymon Mrozowski" content="SitePoint">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Library - Metody</title>
+
+    <script>
+      let closed = "Więcej";
+      let opened = "Zwiń";
+      function change(element){
+        
+        var el = document.getElementById(element.id)
+        var text = el.innerHTML.trim();
+        if(text == closed) el.innerHTML = opened;
+        else el.innerHTML = closed;
+        
+      }
+    </script>
+    
+</head>
+<body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark green-nav mb-5">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Library</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-md-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Metody</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="valeues.html">Zwracane wartości</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="exceptions.html">Wyjątki</a>
+              </li>
+            </ul>          
+          </div>
+      </nav>
+
+      <div class="container min-with-container mb-5">
+
+        <h2>REST API</h2>
+        <p class="ms-4">Platforma Library udostępnia klientom funkcjonalności w ramach API w oparciu o architekturę REST. Wykorzystuje do tego celu protokół HTTP wraz z jego metodami: <i>GET, POST, PUT, DELETE</i>. Elementy zostały podzielone na zasoby np. /books, /users, itd. Dostęp do poszczególnych zasobów następuje poprzez wywołanie wybranej metody HTTP na adres: <b> https://java-library-api.herokuapp.com</b>, dodając ścieżkę do wybranego zasobu.</p>
+
+        <h2 class="mt-4">Metody HTTP</h2>
+        <ul class="ms-4 list-group list-group-flush">
+          <li class="list-group-item"><b>GET:</b> Wykorzystywana do pobierania danych. Wszystkie metody GET mogą być wołane wielokrotnie, gdyż nie modyfikują żadnych zasobów serwisu.</li>
+          <li class="list-group-item"><b>POST:</b> Wykorzystywana do utworzenia nowego zasobu (np. utworzenie nowego konta</li>
+          <li class="list-group-item"><b>DELETE:</b> Wykorzystywana do usuwania zasobów.</li>
+        </ul>
+
+        <h2 class="mt-4">Reprezentacja danych</h2>
+        <p class="ms-4">Wszystkie wysyłane i odbierane dane z API są w formacie JSON. Podstawowym elementem tego formatu jest pole, którego nazwa jest oddzielona od wartości pola dwukropkiem. Pola rozdziela przecinek. Każdy element obiektu JSON, zawiera się w nawiasach klamrowych. Tablice w formacie JSON są zapisywane z wykorzystaniem nawiasów kwadratowych. Wiecej na temat obiektów jakie są zwracane można się dowiedzieć <a href="valeues.html">TUTAJ</a> </p>
+       
+        <h2 class="mt-4">Ograniczenie liczby zapytań</h2>
+        <p class="ms-4">W usłudze Library REST API obowiązuje główny limit nakładany na id klienta - 1000 zapytań na minute.</p>
+        <p class="ms-4">Gdy limit zostanie przekroczony kolejne zapytanie zwróci błąd <b>TOO_MANY_REQUESTS</b>. Należy wtedy odczekać minute przed wysłaniem kolejnego zapytania</p>
+
+        <div class="mb-5 mt-5 text-center ">
+            <h2>Lista metod</h2>
+        </div>
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg">
+            
+            <div class="flex-grow-1 pe-5">Pobierz liste książek</div>
+            <div class="pe-5">
+              <div class=" collapse navbar-collapse "><small class="text-muted">/api/library/books/10</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib" id="button1" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">Więcej</button>
+            </div>
+          </div>        
+          <div class="collapse mb-3 " id="collapse1">
+            <div class="card card-body">
+                <h3>Opis</h3>
+                <p> <small class="text-muted h6"> api/library/books/<b>10</b> </small> - Gdzie 10 oznacza liczbe książek jaką chcemy pobrać. Parametr ten może przyjmować wartości od 1 do 500 </p>
+                <p>
+                    <small class="text-muted h6"> api/library/books/10/<b>300</b> </small> - Metoda może przyjąć drugi parametr <i>(offset). </i> Parametr ten oznacza od którego indeksu chcemy pobierać książki <br/>np: 
+                    <small class="text-muted h6"> api/library/books/10/0 </small>   pobierze 10 pierwszych książek z bazy danych. Natomiast <small class="text-muted h6">api/library/books/10/300</small>  zwróci 10 książek od indeksu 300 (301, 302... 310)
+                </p>
+                <h3>Uwierzytelnienie</h3>
+                <p>Nie wymaga</p>
+                <h3>Typ zapytania</h3>
+                <p>GET</p>
+                <h3>Zwracana wartość</h3>
+                <p>Lista <a href="valeues.html#librarybook_">LibraryBook</a></p>
+                <h3>Wyjątki</h3>
+                <ul class="list-unstyled">
+                    <li>BAD_REQUEST (400) - najczęściej spowodowane błędnym parametrem</li>
+                </ul>   
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg">
+            <div class="flex-grow-1 pe-5">Pobierz najpopularniejsze książki</div>
+            <div class="pe-5">
+              <div class="collapse navbar-collapse"><small class="text-muted">/api/library/books/popular/10</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib" id="button2" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                Więcej
+            </button>
+            </div>
+          </div>        
+          <div class="collapse mb-3" id="collapse2">
+            <div class="card card-body">
+                <h3>Opis</h3>
+                <p> <small class="text-muted h6"> api/library/books/popular/<b>10</b> </small> - Gdzie 10 oznacza liczbe książek jaką chcemy pobrać. Parametr ten może przyjmować wartości od 1 do 500 </p>
+               
+                <h3>Uwierzytelnienie</h3>
+                <p>Nie wymaga</p>
+                <h3>Typ zapytania</h3>
+                <p>GET</p>
+                <h3>Zwracana wartość</h3>
+                <p>Lista <a href="valeues.html#librarybook_">LibraryBook</a></p>
+                <h3>Wyjątki</h3>
+                <ul class="list-unstyled">
+                    <li>BAD_REQUEST (400) - najczęściej spowodowane błędnym parametrem</li>
+                </ul>   
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg">
+            <div class="flex-grow-1 pe-5">Wyszukaj książki po tytule</div>
+            <div class="pe-5">
+              <div class="collapse navbar-collapse"><small class="text-muted">/api/library/books/search/title/book_title</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib" id="button3" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                Więcej
+            </button>
+            </div>
+          </div>        
+          <div class="collapse mb-3" id="collapse3">
+            <div class="card card-body">
+                <h3>Opis</h3>
+                <p> <small class="text-muted h6"> api/library/books/search/title/<b>book_title</b> </small> - Gdzie book_title oznacza liczbe tytuł książki jaką chcemy znaleść.</p>
+                <p>Metoda może zwrócić pustą liste lub wiele książek, które mają daną frazę w tytule</p>
+                <h3>Uwierzytelnienie</h3>
+                <p>Nie wymaga</p>
+                <h3>Typ zapytania</h3>
+                <p>GET</p>
+                <h3>Zwracana wartość</h3>
+                <p>Lista <a href="valeues.html#librarybook_">LibraryBook</a></p>
+                <h3>Wyjątki</h3>
+                <ul class="list-unstyled">
+                    <li>BAD_REQUEST (400) - najczęściej spowodowane błędnym parametrem</li>
+                </ul>   
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg">
+            <div class="flex-grow-1 pe-5">Pobierz 10 polecanych książek</div>
+            <div class="pe-5">
+             <div class="collapse navbar-collapse"><small class="text-muted">/api/library/books/discover</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib"  id="button4" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                Więcej
+            </button>
+            </div>
+          </div>        
+          <div class="collapse mb-3" id="collapse4">
+            <div class="card card-body">
+                <h3>Opis</h3>
+                <p> <small class="text-muted h6"> api/library/books/discover </small> - Nie posiada parametrów. Wywołanie jej zwróci 10 polecanych książek. Każde jej wywołanie będzię zwracać nieco inną liste książek</p>
+                <h3>Uwierzytelnienie</h3>
+                <p>Nie wymaga</p>
+                <h3>Typ zapytania</h3>
+                <p>GET</p>
+                <h3>Zwracana wartość</h3>
+                <p>Lista <a href="valeues.html#librarybook_">LibraryBook</a></p>
+                <h3>Wyjątki</h3>
+                <ul class="list-unstyled">
+                    <li>brak</li>
+                </ul>   
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg">
+            <div class="flex-grow-1 pe-5">Pobierz książke po ID</div>
+            <div class="pe-5">
+              <div class="collapse navbar-collapse"><small class="text-muted">/api/library/books/id/1</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib" id="button5" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                Więcej
+            </button>
+            </div>
+          </div>        
+          <div class="collapse mb-3" id="collapse5">
+            <div class="card card-body">
+                <h3>Opis</h3>
+                <p> <small class="text-muted h6"> api/library/books/id/<b>1</b> </small>  - Gdzie 1 oznacza id książki, którą chcemy pobrać.</p>
+                <h3>Uwierzytelnienie</h3>
+                <p>Nie wymaga</p>
+                <h3>Typ zapytania</h3>
+                <p>GET</p>
+                <h3>Zwracana wartość</h3>
+                <p>Optional <a href="valeues.html#librarybook_">LibraryBook</a></p>
+                <h3>Wyjątki</h3>
+                <ul class="list-unstyled">
+                  <li>BAD_REQUEST (400) - najczęściej spowodowane błędnym parametrem</li>
+                  <li>NOT_FOUND (404) - Książka z podanym id nie istnieje w bazie</li>
+                
+                </ul>   
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg">
+            <div class="flex-grow-1 pe-5">Sprawdź ile jest dostępnych egzemplarzy danej książki</div>
+            <div class="pe-5">
+              <div class="collapse navbar-collapse"><small class="text-muted">/api/library/books/copies/1</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib" id="button6" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                Więcej
+            </button>
+            </div>
+          </div>        
+          <div class="collapse mb-3" id="collapse6">
+            <div class="card card-body">
+                <h3>Opis</h3>
+                <p> <small class="text-muted h6"> api/library/books/copies/<b>1</b> </small>  - Gdzie 1 oznacza id książki, którą chcemy sprawdzić.</p>
+                <p>W wyniku metoda zwraca ile egzemplarzy danej książki jest dostępne w tym momencie do wypożyczenia</p>
+                <h3>Uwierzytelnienie</h3>
+                <p>Nie wymaga</p>
+                <h3>Typ zapytania</h3>
+                <p>GET</p>
+                <h3>Zwracana wartość</h3>
+                <p>int</p>
+                <h3>Wyjątki</h3>
+                <ul class="list-unstyled">
+                  <li>BAD_REQUEST (400) - najczęściej spowodowane błędnym parametrem</li>
+                  <li>NOT_FOUND (404) - Książka z podanym id nie istnieje w bazie</li>
+                
+                </ul>   
+            </div>
+          </div>
+        </section>
+
+
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg">
+            <div class="flex-grow-1 pe-5">Logowanie</div>
+            <div class="pe-5">
+              <div class="collapse navbar-collapse"><small class="text-muted">/login</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib" id="button7" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                Więcej
+            </button>
+            </div>
+          </div>        
+          <div class="collapse mb-3" id="collapse7">
+            <div class="card card-body">
+              <h3>Opis</h3>
+              <p>Metoda loguje użytkownika do serwisu. Aby się zalogować należy w 'body' podać JSON'a w postaci { 'username' : 'nazwa', 'password' : 'haslo'}</p>
+              <p>Metoda zwraca w body wartość 1 (jeżeli wszytko poszło dobrze) oraz NAJWAŻNIEJSZE zwraca token, który jest aktywny przez kolejne 5 dni.</p>
+              <p>Token jest przesyłany w nagłówku (header) o tytule 'Authorization'. Należy go przychowywać w bezpiecznym miejscu. Jest on niezbedny do uzyskania dostępu do metod, które wymagają <b>uwierzytelnienia</b>.</p>
+             
+              <h3>Uwierzytelnienie</h3>
+              <p>Nie wymaga</p>
+              <h3>Typ zapytania</h3>
+              <p>POST</p>
+              <h3>Zwracana wartość</h3>
+              <p>int</p>
+              <p>JTW Token</p>
+
+              <h3>Wyjątki</h3>
+              <ul class="list-unstyled">
+                  <li>Unauthorized (401) - Nie poprawny login lub hasło</li>
+              </ul>  
+                
+              
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg">
+            <div class="flex-grow-1 pe-5">Rejestracja</div>
+            <div class="pe-5">
+              <div class="collapse navbar-collapse"><small class="text-muted">/register</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib" id="button8" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                Więcej
+            </button>
+            </div>
+          </div>        
+          <div class="collapse mb-3" id="collapse8">
+            <div class="card card-body">
+              <h3>Opis</h3>
+              <p>Metoda rejestruje nowego użytkownika do serwisu. Aby się zarejestrować należy w 'body' podać JSON'a w postaci { "username": "nazwa" ,"password": "haslo", "email": "email@com" }</p>
+              <p>Metoda zwraca w body wartość 1 (jeżeli wszytko poszło dobrze).</p>
+              <p>Po udanej rejestracji należy się zalogowac, aby uzyskać dostęp do całej biblioteki</p>
+    
+             
+              <h3>Uwierzytelnienie</h3>
+              <p>Nie wymaga</p>
+              <h3>Typ zapytania</h3>
+              <p>POST</p>
+              <h3>Zwracana wartość</h3>
+              <p>int</p>
+
+              <h3>Wyjątki</h3>
+              <ul class="list-unstyled">
+                <li>BAD_REQUEST (400) - najczęściej spowodowane błędnym parametrem (np email)</li>
+                <li>CONFLICT (409) - jeżeli dany username lub email już istnieje</li>
+              </ul>  
+             
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg ">
+            <div class="flex-grow-1 pe-5">Wypożyczenie książki</div>
+            <div class="pe-5">
+              <div class="collapse navbar-collapse"><small class="text-muted">/api/library/users/borrow/1</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib" id="button9" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                Więcej
+            </button>
+            </div>
+          </div>        
+          <div class="collapse mb-3" id="collapse9">
+            <div class="card card-body">
+              <h3>Opis</h3>
+              <p><small class="text-muted h6"> /api/library/users/borrow/<b>1</b> </small>  - Gdzie 1 oznacza id książki, która ma zostać wypożyczona.</p>
+              <p>Metoda zwraca wartość id konkretnego egzemplarza książki. </p>
+                              
+              <h3>Uwierzytelnienie</h3>
+              <p> <span clas="bg-warning">Wymagane</span>  </p>
+              <h3>Typ zapytania</h3>
+              <p>GET</p>
+              <h3>Zwracana wartość</h3>
+              <p>int</p>
+
+              <h3>Wyjątki</h3>
+              <ul class="list-unstyled">
+                <li>BAD_REQUEST (400) - najczęściej spowodowane błędnym parametrem </li>
+                <li>Forbidden (403) - najcześciej spowodawany brakiem tokena w zapytaniu lub niepoprawnym tokenem </li>
+                <li>NOT_FOUND (404) - Książka o podanym id nie istnieje w bazie</li>   
+                            
+              </ul>  
+             
+            </div>
+          </div>
+        </section>
+
+
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg ">
+            <div class="flex-grow-1 pe-5">Oddanie książki</div>
+            <div class="pe-5">
+              <div class="collapse navbar-collapse"><small class="text-muted">/api/library/users/borrow/back/1</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib" id="button10" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                Więcej
+            </button>
+            </div>
+          </div>        
+          <div class="collapse mb-3" id="collapse10">
+            <div class="card card-body">
+              <h3>Opis</h3>
+              <p><small class="text-muted h6"> /api/library/users/borrow/back<b>1</b> </small>  - Gdzie 1 oznacza id konkretnego egzemplarza książki, którą posiada użytkownik.</p>
+              <p>Metoda zwraca 1 (jeżeli wszytko poszło dobrze). </p>
+                              
+              <h3>Uwierzytelnienie</h3>
+              <p> <span clas="bg-warning">Wymagane</span>  </p>
+              <h3>Typ zapytania</h3>
+              <p>GET</p>
+              <h3>Zwracana wartość</h3>
+              <p>int</p>
+
+              <h3>Wyjątki</h3>
+              <ul class="list-unstyled">
+                <li>BAD_REQUEST (400) - najczęściej spowodowane błędnym parametrem </li>
+                <li>Forbidden (403) - najcześciej spowodawany brakiem tokena w zapytaniu lub niepoprawnym tokenem </li>   
+                <li>NOT_FOUND (404) - Użytkownik nie wypożyczył danej książki</li>    
+                        
+              </ul>  
+             
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg ">
+            <div class="flex-grow-1 pe-5">Pobierz historie wypożyczeń użytkownika</div>
+            <div class="pe-5">
+              <div class="collapse navbar-collapse"><small class="text-muted">/api/library/users/history</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib" id="button11" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                Więcej
+            </button>
+            </div>
+          </div>        
+          <div class="collapse mb-3" id="collapse11">
+            <div class="card card-body">
+              <h3>Opis</h3>
+              <p><small class="text-muted h6"> /api/library/users/history </small>  - Metoda nie posiada parametrów.</p>
+              <p>Zwraca całą historie wypożyczeń łącznie z aktualnie wypożyczonymi książkami. Jeżeli użytkownik nigdy nie wypożyczał kiążek, wtedy zostanie zwrócona pusta lista</p>
+                              
+              <h3>Uwierzytelnienie</h3>
+              <p> <span clas="bg-warning">Wymagane</span>  </p>
+              <h3>Typ zapytania</h3>
+              <p>GET</p>  
+              <h3>Zwracana wartość</h3>
+              <p>Lista <a href="valeues.html#userhistory_">UserHistory</a></p>
+
+              <h3>Wyjątki</h3>
+              <ul class="list-unstyled">
+                <li>Forbidden (403) - najcześciej spowodawany brakiem tokena w zapytaniu lub niepoprawnym tokenem </li>
+                            
+              </ul>  
+             
+            </div>
+          </div>
+        </section>
+
+
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg ">
+            <div class="flex-grow-1 pe-5">Pobierz aktualnie wypożyczone książki</div>
+            <div class="pe-5">
+              <div class="collapse navbar-collapse"><small class="text-muted">/api/library/users/history/current</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib" id="button12" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                Więcej
+            </button>
+            </div>
+          </div>        
+          <div class="collapse mb-3" id="collapse12">
+            <div class="card card-body">
+              <h3>Opis</h3>
+              <p><small class="text-muted h6"> /api/library/users/history/current </small>  - Metoda nie posiada parametrów.</p>
+              <p>Zwraca aktualnie wypożyczone książki. Jeżeli użytkownik nie wypożyczonych kiążek, wtedy zostanie zwrócona pusta lista</p>
+                              
+              <h3>Uwierzytelnienie</h3>
+              <p> <span clas="bg-warning">Wymagane</span>  </p>
+              <h3>Typ zapytania</h3>
+              <p>GET</p>  
+              <h3>Zwracana wartość</h3>
+              <p>Lista <a href="valeues.html#userhistory_">UserHistory</a></p>
+
+              <h3>Wyjątki</h3>
+              <ul class="list-unstyled">
+                <li>Forbidden (403) - najcześciej spowodawany brakiem tokena w zapytaniu lub niepoprawnym tokenem </li>
+                            
+              </ul>  
+             
+            </div>
+          </div>
+        </section>
+
+
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg ">
+            <div class="flex-grow-1 pe-5">Pobierz dane użytkownika</div>
+            <div class="pe-5">
+              <div class="collapse navbar-collapse"><small class="text-muted">/api/library/users</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib" id="button13" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
+                Więcej
+            </button>
+            </div>
+          </div>        
+          <div class="collapse mb-3" id="collapse13">
+            <div class="card card-body">
+              <h3>Opis</h3>
+              <p><small class="text-muted h6"> /api/library/users </small>  - Metoda nie posiada parametrów.</p>
+              <p>Zwraca dane użytkownika, który jest aktualnie zalogowany.</p>
+                              
+              <h3>Uwierzytelnienie</h3>
+              <p> <span clas="bg-warning">Wymagane</span>  </p>
+              <h3>Typ zapytania</h3>
+              <p>GET</p>  
+              <h3>Zwracana wartość</h3>
+              <p>Optional <a href="valeues.html#libraryuser_">LibraryUser</a></p>
+
+              <h3>Wyjątki</h3>
+              <ul class="list-unstyled">
+                <li>Forbidden (403) - najcześciej spowodawany brakiem tokena w zapytaniu lub niepoprawnym tokenem </li>
+                            
+              </ul>  
+             
+            </div>
+          </div>
+        </section>
+
+
+        <section>
+          <div class="my-flex _h4 mb-3 navbar-expand-lg ">
+            <div class="flex-grow-1 pe-5">Usuwanie konta</div>
+            <div class="pe-5">
+              <div class="collapse navbar-collapse"><small class="text-muted">/api/library/users/delete</small></div>
+            </div>
+            <div>
+              <button class="btn btn-primary-lib" id="button14" onclick="change(this)" type="button" data-bs-toggle="collapse" data-bs-target="#collapse14" aria-expanded="false" aria-controls="collapse14">
+                Więcej
+            </button>
+            </div>
+          </div>        
+          <div class="collapse mb-3" id="collapse14">
+            <div class="card card-body">
+              <h3>Opis</h3>
+              <p><small class="text-muted h6"> /api/library/users/delete </small>  - Metoda nie posiada parametrów. Jednak w 'body' należy przesłać JSON'a w formie { "password" : "haslo_uzytkownika"}. W celach potwierdzających tożsamość użytkownika</p>
+              <p>Zwraca wartość 1 (jeżeli wszystko poszło dobrze)</p>
+                              
+              <h3>Uwierzytelnienie</h3>
+              <p> <span clas="bg-warning">Wymagane</span>  </p>
+              <h3>Typ zapytania</h3>
+              <p>DELETE</p>  
+              <h3>Zwracana wartość</h3>
+              <p>int</p>
+
+              <h3>Wyjątki</h3>
+              <ul class="list-unstyled">
+                <li>Forbidden (403) - najcześciej spowodawany brakiem tokena w zapytaniu lub niepoprawnym tokenem </li>
+                <li>CONFLICT (409) - pojawi się, gdy użytkownik nadal posiada ksiązki, których nie oddał </li>
+                <li>BAD_REQUEST (400) - najcześciej spowodawany niepoprawnym hasłem </li>
+                            
+              </ul>  
+             
+            </div>
+          </div>
+        </section>
+
+
+
+      </div>
+      
+    
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Documentation of library REST api service">
+    <meta name="Szymon Mrozowski" content="Describe how to use this API">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Library API Serwis</title>
+    
+</head>
+<body  id="header_">
+  <div class="cover-container d-flex home-primary vh-100 p-3 mx-auto flex-column">
+    <header>
+      <nav class="navbar sticky-top navbar-expand-lg navbar-dark mb-2">
+        <div class="container">
+          <a class="navbar-brand" aria-current="page" href="#">Library</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-md-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link"  href="pl/methods.html">Metody</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pl/valeues.html">Zwracane wartości</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pl/exceptions.html">Wyjątki</a>
+              </li>
+            </ul>          
+          </div>
+      </nav>
+    </header>
+
+    <div class="container d-flex align-items-center justify-content-center flex-grow-1">
+      <section class="align-self-center">
+      <div class=" md-5 d-flex justify-content-center">
+        <img src="graphic/logo.png" class="logo" alt="logo">
+      </div>
+      <div class="mt-3 d-flex justify-content-center flex-column text-white">
+        
+          <h1 class="text-center">Library service</h1>
+
+          <p class="lead text-center">Dokumentacja biblioteki REST API</p>
+          <div class="d-flex justify-content-center mt-4">
+            <a href="#more" class="btn btn-lg home-primary-button "> Dowiedz się wiecej</a>
+          </div>
+          
+      </div>
+    </section>
+    </div> 
+  
+  </div>
+
+  <div class="container" id="more">
+    <!-- Three columns of text below the carousel -->
+    <div class="row  mt-8">
+      <div class="col-lg-4">
+        <div class="d-flex justify-content-center mb-4">
+          <img src="graphic/metod_icon.png" class="home-icons" alt="">
+        </div>
+        <h2 class="text-center">Dostępne metody</h2>
+        <p>Serwis udostępnia wszystkie metody potrzebne do pełnego korzystania z biblioteki. Dzięki pełnemu opisowi nie powinno być problemu z ich implementacją. Dokumentację znajduje się pod przyciskiem poniżej.</p>
+        <p class="d-flex justify-content-center mb-5"><a class="btn btn-primary-lib" href="pl/methods.html" role="button">Przejdź»</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <div class="d-flex justify-content-center mb-4">
+          <img src="graphic/value_icon.png" class="home-icons" alt="">
+        </div>
+        <h2 class="text-center">Co zwracają zapytania?</h2>
+        <p>Serwis zwraca 3 różne klasy w postaci JSON'a. Są to: Książki, Użytkownik oraz Historia użytkownika. Ich wygląd można sprawdzić pod przyciskiem poniżej lub klikająć <i>zwracane wartości</i> w pasku menu na górze.</p>
+        <p class="d-flex justify-content-center mb-5"><a class="btn btn-primary-lib" href="pl/valeues.html" role="button">Przejdź»</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <div class="d-flex justify-content-center mb-4">
+          <img src="graphic/exc_icon.png" class="home-icons" alt="">
+        </div>
+        <h2 class="text-center">Wyjątki</h2>
+        <p>Oprócz 3 klas zapytania do serwisu mogą zwracać wyjątki, które należy obsłużyć. Przykład wyjątku oraz co oznaczają poszczególne wiadomości można znaleść klikając na przycisk poniżej.</p>
+        <p class="d-flex justify-content-center mb-5"><a class="btn btn-primary-lib" href="pl/exceptions.html" role="button">Przejdź»</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider mt-8">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Wszystko czego potrzebujesz. <span class="text-muted">Łatwo i szybko</span></h2>
+        <p class="lead">Serwis posiada 500 różnych tytułów książek. Ponad 2300 egzemplarzy. Zapisywanie historii wypożyczeń każdego użytkownika oraz system polecania nowych książek, które napewno każdemu się spodobają.</p>
+      </div>
+      <div class="col-md-5 ">
+      <img src="graphic/library.png" class="image-class" alt="library">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading"> Bezpieczeństwo <span class="text-muted"> i ochrona</span></h2>
+        <p class="lead">API wykorzystuje <a href="https://jwt.io/">JWT Token</a> do uwierzytelniania użytkowników. Dzięki temu nie trzeba już przesyłać loginu i hasła przy każdym zapytaniu co zwieksza bezpieczeństwo korzystania z biblioteki. Konta użytkowników są dodatkowo chronione m.in. po przez hashowanie haseł przy użyciu metody <i>BCrypt</i> i są przechowywane w takiej formie w bezpieczniej bazie danych. </p>
+      </div>
+      <div class="col-md-5 order-md-1 ">
+      <img src="graphic/secure.png" class="image-class" alt="secure"> 
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading"> Podłącz się <span class="text-muted"> i korzystaj już teraz</span></h2>
+        <p class="lead">Stwórz własnego klienta i podłącz się do naszego API.<br/> Zupełnie za darmo!</p>
+      </div>
+      <div class="col-md-5">
+      <img src="graphic/startnow.png" class="image-class" alt="start"> 
+      </div>
+    </div>
+
+    <hr class="featurette-divider"/>
+
+    <!-- /END THE FEATURETTES -->
+    <div class="d-flex justify-content-center my-3">
+      <a href="#header_"><img src="graphic/up.png" alt=""></a>
+    </div>
+  </div>
+
+
+
+      <footer class="text-center mt-auto text-black-50">
+          <p>« © 2020 SM. Library REST API service ð »</p>
+      </footer>
+
+</body>
+</html>

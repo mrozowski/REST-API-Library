@@ -1,0 +1,11 @@
+app:
+  datasource:
+    jdbc-url: jdbc:postgresql:~~
+    username: ~
+    password: ~
+    pool-size: 30
+
+  jwt:
+    secretKey: ~
+    tokenPrefix: ~
+    tokenExpirationAfterDays: ~

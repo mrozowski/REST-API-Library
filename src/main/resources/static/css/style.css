@@ -1,0 +1,119 @@
+
+body{
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+.home-primary-button{
+  border: 2px solid rgba(255,255,255,0.5) ;
+  background-color:  rgba(255,255,255,0.1);
+  color: white;
+
+}
+.home-primary-button:hover{
+  background-color:  rgba(255,255,255,0.3);
+}
+
+.featurette-heading{
+  margin-top: 3rem;
+  font-size: 42px;
+  
+}
+
+.mt-8{
+  margin-top: 5rem;
+}
+
+.home-icons{
+  width: 200px;
+}
+
+.home-primary{
+  background: linear-gradient(15deg, #1E3557, #0C8D54);
+}
+
+
+
+.green-nav{
+  background-image: linear-gradient(5deg, #1E3557, #0C8D54);
+}
+
+.vh-100{
+  height: 100vh;
+}
+
+.logo{
+  width: 170px
+}
+
+.image-class{
+  width: 94vw;
+  object-fit: cover;
+}
+
+.bounding-box {
+  background-image: url('../graphic/secure.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  width: 500px;
+  height: 500px;
+}
+
+.btn-primary-lib{
+  background-image: linear-gradient(15deg, #1e5754, #0C8D54);
+  border-color: none;
+  color: white;
+  transition: all ease-in 725ms;
+  min-width: 4.65em;
+}
+
+.btn-primary-lib:hover{
+  background-image: linear-gradient(15deg, #28726e, #0fa05e);
+  color: white;
+}
+
+.my-flex {
+    display: flex;
+}
+
+.min-with-container{
+  min-width: unset;
+}
+
+._h4{
+  font-size: 1em;
+}
+
+.json-field{
+  color: #fd7e14;
+  font-weight: 500;
+}
+
+@media only screen and (min-width: 600px) {
+  ._h4{
+    font-size: 1.5em;
+  }
+
+  .featurette-heading{
+    margin-top: 8rem;
+    font-size: 50px;
+  }
+
+  .image-class{
+    width: 500px;
+    height: 500px;
+  }
+
+  .logo{
+    width: 250px
+  }
+
+  .min-with-container{
+    min-width: 29em;
+  }
+}
+
