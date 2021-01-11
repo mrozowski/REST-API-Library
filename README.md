@@ -12,4 +12,4 @@ I used **spring boot security** feature to secure access to some methods that re
 As a database, I used PostgreSQL because it was available on Heroku in a free tier. Below is a picture that shows the structure of the database.
 ![database](other/pictures/database.png?raw=true "database")
 
-To populate the book table I used data from keggle.com, however, there was an excel file with 40k of books which is way too much above Heroku limits. I wrote **Python script** that choose 500 of the most popular books from the excel file, change a little bit the structure and convert it to an SQL file.
+To populate the book table I used data from keggle.com, however, there was an excel file with 40k of books which is way too much above Heroku limits. I wrote [**Python script**](other/script/PythonScript.ipynb) that choose 500 of the most popular books from the excel file, change a little bit the structure and convert it to an SQL file.
